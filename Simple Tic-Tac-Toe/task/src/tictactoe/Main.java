@@ -15,6 +15,7 @@ public class Main {
         while (!board.checkGameState()) {
             board.printCustomGrid();
             board.askInput();
+            //test change
 
         }
         //checkGameState(input);
