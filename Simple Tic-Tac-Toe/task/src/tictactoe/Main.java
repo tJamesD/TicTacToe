@@ -4,47 +4,44 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        // write your code here
-        /*
+
         Scanner scanner = new Scanner(System.in);
-        oldBoard board = new oldBoard();
-        //System.out.print("> ");
-        //String input = scanner.nextLine();
-        //String input = ("_________");
-        //printFilledGrid();
-        System.out.println(!board.checkGameState());
-        while (!board.checkGameState()) {
-            board.printCustomGrid();
-            board.askInput();
-            //test change
-            //test again
-
-         */
-
-
-        //checkGameState(input);
 
         Board board = new Board();
         board.createBoard();
-        board.printBoard();
-        board.setGrid(1, 0);
-        board.printBoard();
-        board.setGrid(1, 1);
-        board.printBoard();
-        String[] boardTest = board.getCurrentGrid();
 
-        for (String x : boardTest) {
-            System.out.print(x);
+        while(true) {
+            board.printBoard();
+            System.out.print("> ");
+            String input = scanner.nextLine();
+            if (input.equals("00")) {
+                break;
+            }
         }
-
 
     }
 
+    public static int[] splitString(String input) {
+        String[] parts;
+        int[] indexes;
+        try {
+            parts = input.split(" ");
+
+        }
+
+    }
+
+    public static void checkNumbers(String input) {
+
+    }
+/*
     public static void printFilledGrid() {
         System.out.println("X O X");
         System.out.println("O X O");
         System.out.println("X O X");
     }
+
+ */
 /*
     public static String askInput(Scanner scanner, String currentState) {
         //System.out.println(currentState);
