@@ -1,123 +1,29 @@
 package tictactoe;
 
+
 import java.util.Scanner;
 
-public class Main {
-    public static void main(String[] args) {
-        // write your code here
-        /*
-        Scanner scanner = new Scanner(System.in);
-        oldBoard board = new oldBoard();
-        //System.out.print("> ");
-        //String input = scanner.nextLine();
-        //String input = ("_________");
-        //printFilledGrid();
-        System.out.println(!board.checkGameState());
-        while (!board.checkGameState()) {
-            board.printCustomGrid();
-            board.askInput();
-            //test change
-            //test again
+public class oldBoard {
+    String input;
+    char currentTurn;
+    Scanner scanner;
+    int index1;
+    int index2;
 
-         */
-
-
-        //checkGameState(input);
-
-        Board board = new Board();
-        board.createBoard();
-        board.printBoard();
-        board.setGrid(1, 0);
-        board.printBoard();
-        board.setGrid(1, 1);
-        board.printBoard();
-        String[] boardTest = board.getCurrentGrid();
-
-        for (String x : boardTest) {
-            System.out.print(x);
-        }
-
+    String currentState;
+    char[] oldState;
+    public  oldBoard() {
+        this.input = ("_________");
+        this.scanner = new Scanner(System.in);
+        index1 = 0;
+        index2 = 0;
+        this.currentTurn = 'X';
+        this.currentState = ("_________");
+        oldState = currentState.toCharArray();
 
     }
 
-    public static void printFilledGrid() {
-        System.out.println("X O X");
-        System.out.println("O X O");
-        System.out.println("X O X");
-    }
-/*
-    public static String askInput(Scanner scanner, String currentState) {
-        //System.out.println(currentState);
-        char[] oldState = currentState.toCharArray();
-        //char[] newState = new char[8];
-        StringBuilder newState = new StringBuilder();
-        boolean areNumbers = false;
-
-
-        //System.out.print("> ");
-        String index = "";
-        String[] parts;
-        //index = scanner.nextLine();
-        int index1 = 0;
-        int index2 = 0;
-
-
-        while ((!index.matches("\\w \\w")) || areNumbers == false || !checkOccupied(currentState,oldState,index1,index2) || checkLimit(index1, index2)) {
-            //System.out.println("You should enter numbers!");
-            System.out.print("> ");
-            index = scanner.nextLine();
-
-            parts = index.split(" ");
-            //System.out.println(parts[0]);
-            //System.out.println(parts[1]);
-
-            try {
-                index1 = Integer.parseInt(parts[0]);
-                index2 = Integer.parseInt(parts[1]);
-                areNumbers = true;
-                //System.out.println(index2);
-
-            } catch (Exception e) {
-                System.out.println("You should enter numbers!");
-                areNumbers = false;
-
-            }
-            //System.out.println(checkOccupied(currentState,oldState,index1,index2));
-
-            if (checkLimit(index1, index2)) {
-                System.out.println("Coordinates should be from 1 to 3!");
-            }
-
-            if ( !checkOccupied(currentState,oldState,index1,index2)  ) {
-                System.out.println("This cell is occupied! Choose another one!");
-            }
-        }
-/*
-        while (!((index1 == 1 || index1 == 2 || index1 == 3) &&
-                (index2 == 1 || index2 == 2 || index2 == 3))) {
-
-            System.out.println("Coordinates should be from 1 to 3!");
-            System.out.print("> ");
-            index = scanner.nextLine();
-            parts = index.split(" ");
-
-            index1 = Integer.parseInt(parts[0]);
-            index2 = Integer.parseInt(parts[1]);
-            //System.out.println("index1:2 " + index1);
-            //System.out.println("index2:2 " + index2);
-        }
-
-        setUnoccupied(oldState,index1,index2);
-        for (int i = 0; i < oldState.length; i++) {
-            newState.append(oldState[i]);
-        }
-        //System.out.println(newState);
-
-        printCustomGrid(newState.toString());
-        return newState.toString();
-    }
-
-    public static void printCustomGrid(String input) {
+    public void printCustomGrid() {
 
 
         System.out.println("---------");
@@ -142,78 +48,181 @@ public class Main {
         System.out.println("---------");
     }
 
-    public static boolean checkLimit(int index1, int index2) {
+    public String askInput() {
+        //System.out.println(currentState);
+        char[] oldState = currentState.toCharArray();
+        //char[] newState = new char[8];
+        /*
+        for (int i = 0; i <oldState.length; i++) {
+            System.out.println(oldState[i]);
+        }
+        */
+        StringBuilder newState = new StringBuilder();
+        boolean areNumbers = false;
 
-        if (!((index1 == 1 || index1 == 2 || index1 == 3) &&
+
+        System.out.print("> WE ARE HERE!!!");
+        String index = "";
+        String[] parts;
+        index = scanner.nextLine();
+        System.out.println(index);
+        //int index1 = 0;
+        //int index2 = 0;
+        System.out.println("INDEX MATCH" + (!index.matches("\\w \\w")));
+        System.out.println("ARE NUMBERS" + (areNumbers == false));
+        System.out.println("CHECK OCCUPIED" +(!checkOccupied() ));
+        System.out.println("CHECK LIMIT" + checkLimit());
+
+        System.out.println("WHILE LOOOP" + ((!index.matches("\\w \\w")) || areNumbers == false || !checkOccupied() || checkLimit()));
+        System.out.println("index:" + index);
+        System.out.println("index1:" + index1);
+        System.out.println("index2:" + index2);
+
+
+        while ((!index.matches("\\w \\w")) || areNumbers == false || !checkOccupied() || checkLimit()) {
+            //System.out.println("You should enter numbers!");
+            System.out.println(index);
+            System.out.print("> ");
+            index = scanner.nextLine();
+
+            parts = index.split(" ");
+            //System.out.println(parts[0]);
+            //System.out.println(parts[1]);
+            System.out.println("DO WE HIT HERE??????");
+            try {
+                System.out.println("INDEX MATCH1" + (!index.matches("\\w \\w")));
+                System.out.println("ARE NUMBERS1" + (areNumbers == false));
+                System.out.println("CHECK OCCUPIED1" +(!checkOccupied()) );
+                System.out.println("CHECK LIMIT1" + checkLimit());
+                System.out.println("WHILE LOOOP" + ((!index.matches("\\w \\w")) || areNumbers == false || !checkOccupied() || checkLimit()));
+                System.out.println("11index:" + index);
+                System.out.println("22index1:" + index1);
+                System.out.println("33index2:" + index2);
+
+                index1 = Integer.parseInt(parts[0]);
+                index2 = Integer.parseInt(parts[1]);
+                System.out.println("44index1:" + index1);
+                System.out.println("55index2:" + index2);
+                areNumbers = true;
+                System.out.println("TRY");
+                //System.out.println(index2);
+
+            } catch (Exception e) {
+                System.out.println("You should enter numbers!");
+                areNumbers = false;
+
+            }
+            //System.out.println(checkOccupied(currentState,oldState,index1,index2));
+
+            if (checkLimit()) {
+                System.out.println("Coordinates should be from 1 to 3!");
+            }
+
+            if (!checkOccupied()) {
+                System.out.println("This cell is occupied! Choose another one!");
+            }
+        }
+
+        while (!((index1 == 1 || index1 == 2 || index1 == 3) &&
                 (index2 == 1 || index2 == 2 || index2 == 3))) {
 
-            //System.out.println("Coordinates should be from 1 to 3!");
+            System.out.println("Coordinates should be from 1 to 3!");
+            System.out.print("> ");
+            index = scanner.nextLine();
+            parts = index.split(" ");
 
+            index1 = Integer.parseInt(parts[0]);
+            index2 = Integer.parseInt(parts[1]);
+            //System.out.println("index1:2 " + index1);
+            //System.out.println("index2:2 " + index2);
         }
-        else {
-            return false;
+
+        setUnoccupied();
+        for (int i = 0; i < oldState.length; i++) {
+            newState.append(oldState[i]);
         }
-        return true;
+        //System.out.println(newState);
+
+        printCustomGrid();
+        return newState.toString();
     }
 
-    public static boolean checkOccupied(String input,char[] oldState, int index1, int index2) {
-        boolean sNull = index1 == 0 && index2 == 0;
-        boolean s0 = index1 == 1 && index2 == 1 && oldState[0] == '_';
-        boolean s1 = index1 == 1 && index2 == 2 && oldState[1] == '_';
-        boolean s2 = index1 == 1 && index2 == 3 && oldState[2] == '_';
-        boolean s3 = index1 == 2 && index2 == 1 && oldState[3] == '_';
-        boolean s4 = index1 == 2 && index2 == 2 && oldState[4] == '_';
-        boolean s5 = index1 == 2 && index2 == 3 && oldState[5] == '_';
-        boolean s6 = index1 == 3 && index2 == 1 && oldState[6] == '_';
-        boolean s7 = index1 == 3 && index2 == 2 && oldState[7] == '_';
-        boolean s8 = index1 == 3 && index2 == 3 && oldState[8] == '_';
-        boolean notOccupied = false;
-        boolean s9 = !((index1 == 1 || index1 == 2 || index1 == 3) &&
-                (index2 == 1 || index2 == 2 || index2 == 3));
 
-        if (sNull) {
-            notOccupied = false;
-        }
+        public boolean checkLimit() {
 
-        if(s0) {
-            notOccupied = true;
-        }
-        if(s1) {
-            notOccupied = true;
-        }
-        if(s2) {
-            notOccupied = true;
-        }
-        if(s3) {
-            notOccupied = true;
-        }
-        if(s4) {
-            notOccupied = true;
-        }
-        if(s5) {
-            notOccupied = true;
-        }
-        if(s6) {
-            notOccupied = true;
-        }
-        if(s7) {
-            notOccupied = true;
-        }
-        if(s8) {
-            notOccupied = true;
-        }
-        if(s9) {
-            notOccupied = true;
+        boolean returnMe = false;
+
+            if (!((index1 == 1 || index1 == 2 || index1 == 3) &&
+                    (index2 == 1 || index2 == 2 || index2 == 3))) {
+                    returnMe = true;
+                return returnMe;
+                //System.out.println("Coordinates should be from 1 to 3!");
+
+            }
+            else {
+                return returnMe;
+            }
+
         }
 
+        public boolean checkOccupied() {
+            boolean sNull = index1 == 0 && index2 == 0;
+            boolean s0 = index1 == 1 && index2 == 1 && oldState[0] == '_';
+            boolean s1 = index1 == 1 && index2 == 2 && oldState[1] == '_';
+            boolean s2 = index1 == 1 && index2 == 3 && oldState[2] == '_';
+            boolean s3 = index1 == 2 && index2 == 1 && oldState[3] == '_';
+            boolean s4 = index1 == 2 && index2 == 2 && oldState[4] == '_';
+            boolean s5 = index1 == 2 && index2 == 3 && oldState[5] == '_';
+            boolean s6 = index1 == 3 && index2 == 1 && oldState[6] == '_';
+            boolean s7 = index1 == 3 && index2 == 2 && oldState[7] == '_';
+            boolean s8 = index1 == 3 && index2 == 3 && oldState[8] == '_';
+            boolean notOccupied = false;
+            boolean s9 = !((index1 == 1 || index1 == 2 || index1 == 3) &&
+                    (index2 == 1 || index2 == 2 || index2 == 3));
+
+            if (sNull) {
+                notOccupied = false;
+            }
+
+            if(s0) {
+                notOccupied = true;
+            }
+            if(s1) {
+                notOccupied = true;
+            }
+            if(s2) {
+                notOccupied = true;
+            }
+            if(s3) {
+                notOccupied = true;
+            }
+            if(s4) {
+                notOccupied = true;
+            }
+            if(s5) {
+                notOccupied = true;
+            }
+            if(s6) {
+                notOccupied = true;
+            }
+            if(s7) {
+                notOccupied = true;
+            }
+            if(s8) {
+                notOccupied = true;
+            }
+            if(s9) {
+                notOccupied = true;
+            }
 
 
 
 
-        return notOccupied;
-    }
 
-    public static char[] setUnoccupied(char[] oldState, int index1, int index2) {
+            return notOccupied;
+        }
+
+    public char[] setUnoccupied() {
 
         boolean s0 = index1 == 1 && index2 == 1 && oldState[0] == '_';
         boolean s1 = index1 == 1 && index2 == 2 && oldState[1] == '_';
@@ -264,13 +273,14 @@ public class Main {
         return oldState;
     }
 
-    public static boolean checkGameState(String input) {
+    public boolean checkGameState() {
         int xTally = 0;
         int oTally = 0;
         int underTally = 0;
         boolean possible = true;
         boolean win = false;
         boolean endGame = false;
+
 
 
         boolean xWin = ((input.charAt(0) == 'X') && (input.charAt(4) == 'X') && (input.charAt(8) == 'X')) ||
@@ -335,7 +345,6 @@ public class Main {
             endGame = true;
         }
         return endGame;
-
+//test3
     }
-    */
 }
