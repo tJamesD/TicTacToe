@@ -55,7 +55,7 @@ public class Board {
         }
     }
 
-    public String[] getCurrentGrid() {
+    public String[] getCurrentGridArray() {
         String[] currentGrid = new String[9];
         int i = 0;
         for (int rows = 0; rows < boardArray.length ; rows++) {
@@ -66,6 +66,31 @@ public class Board {
 
         }
         return currentGrid;
+    }
+
+    public String getCurrentGridString() {
+        StringBuilder gridBuild = new StringBuilder();
+        String currentGrid = "";
+
+        for(int rows = 0; rows < boardArray.length; rows++) {
+            for (int cols = 0; cols < boardArray[rows].length; cols++) {
+                gridBuild.append(boardArray[rows][cols]);
+            }
+        }
+        currentGrid = gridBuild.toString();
+
+
+        return currentGrid;
+    }
+
+    public void updateGrid(String[] newState) {
+        int i = 0;
+        for(int rows = 0; rows<boardArray.length; rows++) {
+            for (int cols = 0; cols<boardArray[rows].length; cols++ ) {
+                boardArray[rows][cols] = newState[i];
+                i++;
+            }
+        }
     }
 
 }

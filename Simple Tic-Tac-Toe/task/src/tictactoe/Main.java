@@ -8,7 +8,12 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         Board board = new Board();
+        NumberCheck checkNumbers = new NumberCheck();
+
         board.createBoard();
+
+
+
 
         while(true) {
             board.printBoard();
@@ -17,23 +22,38 @@ public class Main {
             if (input.equals("00")) {
                 break;
             }
+            checkNumbers.SplitString(input);
+            checkNumbers.indexConvert();
+
+            if (checkNumbers.isIndexConvert()) {
+                checkNumbers.rangeCheck();
+            }
+
+            if(checkNumbers.isRangeCheck()) {
+                String[] gameState = board.getCurrentGridArray();
+                int index1 = checkNumbers.getIndex1();
+                int index2 = checkNumbers.getIndex2();
+
+                BoardCheck checkBoard = new BoardCheck(gameState);
+                checkBoard.checkOccupied(index1,index2);
+                if(checkBoard.isOccupied()) {
+                    String[] newState = checkBoard.setCell();
+                    board.updateGrid(newState);
+                }
+            }
         }
 
     }
-
-    public static int[] splitString(String input) {
-        String[] parts;
-        int[] indexes;
-        try {
-            parts = input.split(" ");
-
-        }
+/*
+    public static void quizCheck() {
+        System.out.println(8*2-7/4);
+        System.out.println(813%100/3 + 2.4);
+        System.out.println("hello 34 " + 2 * 4);
+        System.out.println(5 + 2 + "(1 + 1)" + 4 + 2 * 3);
 
     }
 
-    public static void checkNumbers(String input) {
-
-    }
+ */
 /*
     public static void printFilledGrid() {
         System.out.println("X O X");
