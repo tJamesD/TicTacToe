@@ -36,7 +36,7 @@ public class Main {
 
                 BoardCheck checkBoard = new BoardCheck(gameState);
                 checkBoard.checkOccupied(index1,index2);
-                if(checkBoard.isOccupied()) {
+                if(checkBoard.isOccupied()==false) {
                     String[] newState = checkBoard.setCell();
                     board.updateGrid(newState);
                 }

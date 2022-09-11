@@ -45,7 +45,7 @@ public class BoardCheck {
         if(index1 == 3 && index2 == 3 && gameState[8] == "_") {
             occupied = false;
         }
-        else {
+        else if (occupied == true) {
             System.out.println("This cell is occupied! Choose another one!");
         }
     }
@@ -74,10 +74,30 @@ public class BoardCheck {
         if (index1 == 3 && index2 == 2 ) {
             gameState[7] = "X";
         }
-        if (index1 == 3 && index2 == 2 ) {
+        if (index1 == 3 && index2 == 3 ) {
             gameState[8] = "X";
         }
         return gameState;
+    }
+
+    public void checkWin() {
+        boolean xWin = ((gameState[0].equals("X")) && (gameState[4].equals("X")) && (gameState[8].equals("X"))) ||
+                ((gameState[2].equals("X")) && (gameState[4].equals("X")) && (gameState[6].equals("X"))) ||
+                ((gameState[0].equals("X")) && (gameState[3].equals("X")) && (gameState[6].equals("X"))) ||
+                ((gameState[1].equals("X")) && (gameState[4].equals("X")) && (gameState[7].equals("X"))) ||
+                ((gameState[2].equals("X")) && (gameState[5].equals("X")) && (gameState[8].equals("X"))) ||
+                ((gameState[0].equals("X")) && (gameState[1].equals("X")) && (gameState[2].equals("X"))) ||
+                ((gameState[3].equals("X")) && (gameState[4].equals("X")) && (gameState[5].equals("X"))) ||
+                ((gameState[6].equals("X")) && (gameState[7].equals("X")) && (gameState[8].equals("X")));
+
+        boolean oWin = ((gameState[0].equals("O")) && (gameState[4].equals("O")) && (gameState[8].equals("O"))) ||
+                ((gameState[2].equals("O")) && (gameState[4].equals("O")) && (gameState[6].equals("O"))) ||
+                ((gameState[0].equals("O")) && (gameState[3].equals("O")) && (gameState[6].equals("O"))) ||
+                ((gameState[1].equals("O")) && (gameState[4].equals("O")) && (gameState[7].equals("O"))) ||
+                ((gameState[2].equals("O")) && (gameState[5].equals("O")) && (gameState[8].equals("O"))) ||
+                ((gameState[0].equals("O")) && (gameState[1].equals("O")) && (gameState[2].equals("O"))) ||
+                ((gameState[3].equals("O")) && (gameState[4].equals("O")) && (gameState[5].equals("O"))) ||
+                ((gameState[6].equals("O")) && (gameState[7].equals("O")) && (gameState[8].equals("O")));
     }
 
     public boolean isOccupied() {
