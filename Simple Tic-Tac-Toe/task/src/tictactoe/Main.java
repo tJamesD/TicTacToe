@@ -5,10 +5,13 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
+
+
         Scanner scanner = new Scanner(System.in);
 
         Board board = new Board();
         NumberCheck checkNumbers = new NumberCheck();
+        BoardCheck checkBoard = new BoardCheck();
 
         board.createBoard();
 
@@ -34,26 +37,30 @@ public class Main {
                 int index1 = checkNumbers.getIndex1();
                 int index2 = checkNumbers.getIndex2();
 
-                BoardCheck checkBoard = new BoardCheck(gameState);
+
+                checkBoard.setGameState(gameState);
                 checkBoard.checkOccupied(index1,index2);
                 if(checkBoard.isOccupied()==false) {
                     String[] newState = checkBoard.setCell();
+                    for (String x : newState) {
+                        System.out.print(x);
+                    }
+                    System.out.println();
                     board.updateGrid(newState);
+                   //String turn = checkBoard.getxOrOTurn();
+                    //System.out.println(turn + " 1");
+                    checkBoard.setXOrOTurn();
+                    //turn = checkBoard.getxOrOTurn();
+                    //System.out.println(turn + " 2");
+
                 }
             }
         }
 
     }
-/*
-    public static void quizCheck() {
-        System.out.println(8*2-7/4);
-        System.out.println(813%100/3 + 2.4);
-        System.out.println("hello 34 " + 2 * 4);
-        System.out.println(5 + 2 + "(1 + 1)" + 4 + 2 * 3);
 
-    }
 
- */
+
 /*
     public static void printFilledGrid() {
         System.out.println("X O X");
@@ -61,8 +68,8 @@ public class Main {
         System.out.println("X O X");
     }
 
- */
-/*
+
+
     public static String askInput(Scanner scanner, String currentState) {
         //System.out.println(currentState);
         char[] oldState = currentState.toCharArray();
