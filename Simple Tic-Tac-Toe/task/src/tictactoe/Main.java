@@ -18,6 +18,7 @@ public class Main {
 
 
 
+
         while(true) {
             board.printBoard();
             System.out.print("> ");
@@ -34,33 +35,22 @@ public class Main {
 
              if(checkNumbers.isRangeCheck()) {
                  String[] gameState = board.getCurrentGridArray();
-                 int index1 = checkNumbers.getIndex1();
-                 int index2 = checkNumbers.getIndex2();
+                  int index1 = checkNumbers.getIndex1();
+                  int index2 = checkNumbers.getIndex2();
 
 
                  checkBoard.setGameState(gameState);
                  checkBoard.checkOccupied(index1, index2);
 
-                if (checkBoard.isOccupied()){
+                if (checkBoard.isOccupied() && checkNumbers.isIndexConvert()){
+                    System.out.println("This cell is occupied! Choose another one!");
                     continue;
                 }
-                 System.out.println("RANGE CHECK" + checkNumbers.isRangeCheck());
-                 System.out.println("INDEX1: "+index1);
-                 System.out.println("INDEX2: " +index2);
-                 System.out.println("INDEX1 IN OBJECT + " + checkNumbers.getIndex1());
-                 System.out.println("INDEX2 IN OBJECT + " + checkNumbers.getIndex2());
+
                 if(checkBoard.isOccupied()==false ) {
                     String[] newState = checkBoard.setCell();
-                    for (String x : newState) {
-                        System.out.print(x);
-                    }
-                    System.out.println();
                     board.updateGrid(newState);
-                   //String turn = checkBoard.getxOrOTurn();
-                    //System.out.println(turn + " 1");
                     checkBoard.setXOrOTurn();
-                    //turn = checkBoard.getxOrOTurn();
-                    //System.out.println(turn + " 2");
 
                 }
             }

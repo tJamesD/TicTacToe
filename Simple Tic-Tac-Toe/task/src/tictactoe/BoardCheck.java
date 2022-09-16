@@ -142,12 +142,15 @@ public class BoardCheck {
         }
     }
 
+    public boolean isGameOver() {
+        return gameOver;
+    }
+
     public boolean isOccupied() {
-        if (occupied) {
-            System.out.println("This cell is occupied! Choose another one!");
-        }
         return occupied;
     }
+
+
 
     public void checkTally() {
         xTally = 0;
@@ -181,7 +184,7 @@ public class BoardCheck {
 
     public void setXOrOTurn() {
         Set = true;
-        System.out.println("TURN SET");
+        //System.out.println("TURN SET");
         if (xOrOTurn.equals("X")) {
             xOrOTurn = "O";
             Set = false;

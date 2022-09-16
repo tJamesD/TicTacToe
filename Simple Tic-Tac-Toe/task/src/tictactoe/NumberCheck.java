@@ -47,6 +47,7 @@ public class NumberCheck {
     }
 
     public boolean isIndexConvert() {
+
         return indexConvert;
     }
 
