@@ -28,19 +28,28 @@ public class Main {
             checkNumbers.SplitString(input);
             checkNumbers.indexConvert();
 
-            if (checkNumbers.isIndexConvert()) {
+             if (checkNumbers.isIndexConvert()) {
                 checkNumbers.rangeCheck();
             }
 
-            if(checkNumbers.isRangeCheck()) {
-                String[] gameState = board.getCurrentGridArray();
-                int index1 = checkNumbers.getIndex1();
-                int index2 = checkNumbers.getIndex2();
+             if(checkNumbers.isRangeCheck()) {
+                 String[] gameState = board.getCurrentGridArray();
+                 int index1 = checkNumbers.getIndex1();
+                 int index2 = checkNumbers.getIndex2();
 
 
-                checkBoard.setGameState(gameState);
-                checkBoard.checkOccupied(index1,index2);
-                if(checkBoard.isOccupied()==false) {
+                 checkBoard.setGameState(gameState);
+                 checkBoard.checkOccupied(index1, index2);
+
+                if (checkBoard.isOccupied()){
+                    continue;
+                }
+                 System.out.println("RANGE CHECK" + checkNumbers.isRangeCheck());
+                 System.out.println("INDEX1: "+index1);
+                 System.out.println("INDEX2: " +index2);
+                 System.out.println("INDEX1 IN OBJECT + " + checkNumbers.getIndex1());
+                 System.out.println("INDEX2 IN OBJECT + " + checkNumbers.getIndex2());
+                if(checkBoard.isOccupied()==false ) {
                     String[] newState = checkBoard.setCell();
                     for (String x : newState) {
                         System.out.print(x);

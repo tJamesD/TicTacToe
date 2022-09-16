@@ -28,6 +28,7 @@ public class NumberCheck {
         try {
             index1 = Integer.valueOf(parts[0]);
             index2 = Integer.valueOf(parts[1]);
+            indexConvert = true;
         }
         catch(Exception e) {
             System.out.println("You should enter numbers!");
@@ -38,6 +39,7 @@ public class NumberCheck {
     public void rangeCheck() {
         if (index1 <= 0 || index2 <= 0 || index1 > 3 || index2 >3) {
             System.out.println("Coordinates should be from 1 to 3");
+            rangeCheck = false;
         }
         else {
             rangeCheck = true;

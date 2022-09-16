@@ -1,5 +1,7 @@
 package tictactoe;
 
+import java.sql.SQLOutput;
+
 public class BoardCheck {
 
     String[] gameState;
@@ -16,7 +18,6 @@ public class BoardCheck {
     boolean possible;
     boolean gameOver;
     boolean Set;
-
 
 
     public BoardCheck() {
@@ -37,69 +38,75 @@ public class BoardCheck {
     public void checkOccupied(int index1, int index2) {
         this.index1 = index1;
         this.index2 = index2;
-
+        occupied = true;
 
         if (index1 == 1 && index2 == 1 && gameState[0].equals("_")) {
             occupied = false;
         }
-        if (index1 == 1 && index2 == 2 &&gameState[1].equals("_")) {
+        if (index1 == 1 && index2 == 2 && gameState[1].equals("_")) {
             occupied = false;
         }
-        if(index1 == 1 && index2 == 3 && gameState[2].equals("_")) {
+        if (index1 == 1 && index2 == 3 && gameState[2].equals("_")) {
             occupied = false;
         }
-        if(index1 == 2 && index2 == 1 && gameState[3].equals("_")) {
+        if (index1 == 2 && index2 == 1 && gameState[3].equals("_")) {
             occupied = false;
         }
-        if(index1 == 2 && index2 == 2 && gameState[4].equals("_")) {
+        if (index1 == 2 && index2 == 2 && gameState[4].equals("_")) {
             occupied = false;
         }
-        if(index1 == 2 && index2 == 3 && gameState[5].equals("_")) {
+        if (index1 == 2 && index2 == 3 && gameState[5].equals("_")) {
             occupied = false;
         }
-        if(index1 == 3 && index2 == 1 && gameState[6].equals("_")) {
+        if (index1 == 3 && index2 == 1 && gameState[6].equals("_")) {
             occupied = false;
         }
-        if(index1 == 3 && index2 == 2 && gameState[7].equals("_")) {
+        if (index1 == 3 && index2 == 2 && gameState[7].equals("_")) {
             occupied = false;
         }
-        if(index1 == 3 && index2 == 3 && gameState[8].equals("_")) {
+        if (index1 == 3 && index2 == 3 && gameState[8].equals("_")) {
             occupied = false;
-        }
-        else if (occupied) {
-            System.out.println("This cell is occupied! Choose another one!");
         }
     }
+
     public String[] setCell() {
-        if (index1 == 1 && index2 == 1 ) {
+        if (index1 == 1 && index2 == 1) {
             gameState[0] = xOrOTurn;
         }
-        if (index1 == 1 && index2 == 2 ) {
-            gameState[1] = xOrOTurn;;
+        if (index1 == 1 && index2 == 2) {
+            gameState[1] = xOrOTurn;
+            ;
         }
-        if (index1 == 1 && index2 == 3 ) {
-            gameState[2] = xOrOTurn;;
+        if (index1 == 1 && index2 == 3) {
+            gameState[2] = xOrOTurn;
+            ;
         }
-        if (index1 == 2 && index2 == 1 ) {
-            gameState[3] = xOrOTurn;;
+        if (index1 == 2 && index2 == 1) {
+            gameState[3] = xOrOTurn;
+            ;
         }
-        if (index1 == 2 && index2 == 2 ) {
-            gameState[4] = xOrOTurn;;
+        if (index1 == 2 && index2 == 2) {
+            gameState[4] = xOrOTurn;
+            ;
         }
-        if (index1 == 2 && index2 == 3 ) {
-            gameState[5] = xOrOTurn;;
+        if (index1 == 2 && index2 == 3) {
+            gameState[5] = xOrOTurn;
+            ;
         }
-        if (index1 == 3 && index2 == 1 ) {
-            gameState[6] = xOrOTurn;;
+        if (index1 == 3 && index2 == 1) {
+            gameState[6] = xOrOTurn;
+            ;
         }
-        if (index1 == 3 && index2 == 2 ) {
-            gameState[7] = xOrOTurn;;
+        if (index1 == 3 && index2 == 2) {
+            gameState[7] = xOrOTurn;
+            ;
         }
-        if (index1 == 3 && index2 == 3 ) {
-            gameState[8] = xOrOTurn;;
+        if (index1 == 3 && index2 == 3) {
+            gameState[8] = xOrOTurn;
+            ;
         }
         //for(int i = 0; i< gameState.length; i++) {
-          //  System.out.print(gameState[i]);
+        //  System.out.print(gameState[i]);
         //}
         return gameState;
     }
@@ -136,6 +143,9 @@ public class BoardCheck {
     }
 
     public boolean isOccupied() {
+        if (occupied) {
+            System.out.println("This cell is occupied! Choose another one!");
+        }
         return occupied;
     }
 
@@ -143,13 +153,12 @@ public class BoardCheck {
         xTally = 0;
         oTally = 0;
         for (String cell : gameState) {
-            if(cell.equals("X")) {
+            if (cell.equals("X")) {
                 xTally++;
             }
-            if(cell.equals("O")) {
+            if (cell.equals("O")) {
                 oTally++;
-            }
-            else {
+            } else {
                 spaceTally++;
 
             }
@@ -171,22 +180,17 @@ public class BoardCheck {
  */
 
     public void setXOrOTurn() {
-        System.out.println("IN METHOD: " + xOrOTurn);
+        Set = true;
+        System.out.println("TURN SET");
         if (xOrOTurn.equals("X")) {
-            xOrOTurn = "O" ;
-            System.out.println("IN METHOD1: " + xOrOTurn);
+            xOrOTurn = "O";
             Set = false;
-           //System.out.println("DEBUG1");
-           //System.out.println(xOrOTurn);
+
         }
 
-        System.out.println(xOrOTurn.equals("O") && Set!=false);
-        if(xOrOTurn.equals("O") && Set!=false) {
-            System.out.println("IN METHOD2: " + xOrOTurn);
+        if (xOrOTurn.equals("O") && Set != false) {
             xOrOTurn = "X";
             Set = true;
-            //System.out.println("DEBUG2");
-            //System.out.println(xOrOTurn);
         }
     }
 
