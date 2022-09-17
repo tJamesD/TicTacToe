@@ -18,6 +18,10 @@ public class BoardCheck {
     boolean possible;
     boolean gameOver;
     boolean Set;
+    boolean xWin;
+    boolean oWin;
+    boolean xWinner;
+    boolean oWinner;
 
 
     public BoardCheck() {
@@ -25,6 +29,8 @@ public class BoardCheck {
         this.occupied = true;
         this.gameOver = false;
         this.Set = true;
+        this.xWinner = false;
+        this.oWinner = false;
 
         this.xTally = 0;
         this.oTally = 0;
@@ -40,31 +46,31 @@ public class BoardCheck {
         this.index2 = index2;
         occupied = true;
 
-        if (index1 == 1 && index2 == 1 && gameState[0].equals("_")) {
+        if (index1 == 1 && index2 == 1 && gameState[0].equals(" ")) {
             occupied = false;
         }
-        if (index1 == 1 && index2 == 2 && gameState[1].equals("_")) {
+        if (index1 == 1 && index2 == 2 && gameState[1].equals(" ")) {
             occupied = false;
         }
-        if (index1 == 1 && index2 == 3 && gameState[2].equals("_")) {
+        if (index1 == 1 && index2 == 3 && gameState[2].equals(" ")) {
             occupied = false;
         }
-        if (index1 == 2 && index2 == 1 && gameState[3].equals("_")) {
+        if (index1 == 2 && index2 == 1 && gameState[3].equals(" ")) {
             occupied = false;
         }
-        if (index1 == 2 && index2 == 2 && gameState[4].equals("_")) {
+        if (index1 == 2 && index2 == 2 && gameState[4].equals(" ")) {
             occupied = false;
         }
-        if (index1 == 2 && index2 == 3 && gameState[5].equals("_")) {
+        if (index1 == 2 && index2 == 3 && gameState[5].equals(" ")) {
             occupied = false;
         }
-        if (index1 == 3 && index2 == 1 && gameState[6].equals("_")) {
+        if (index1 == 3 && index2 == 1 && gameState[6].equals(" ")) {
             occupied = false;
         }
-        if (index1 == 3 && index2 == 2 && gameState[7].equals("_")) {
+        if (index1 == 3 && index2 == 2 && gameState[7].equals(" ")) {
             occupied = false;
         }
-        if (index1 == 3 && index2 == 3 && gameState[8].equals("_")) {
+        if (index1 == 3 && index2 == 3 && gameState[8].equals(" ")) {
             occupied = false;
         }
     }
@@ -75,35 +81,35 @@ public class BoardCheck {
         }
         if (index1 == 1 && index2 == 2) {
             gameState[1] = xOrOTurn;
-            ;
+
         }
         if (index1 == 1 && index2 == 3) {
             gameState[2] = xOrOTurn;
-            ;
+
         }
         if (index1 == 2 && index2 == 1) {
             gameState[3] = xOrOTurn;
-            ;
+
         }
         if (index1 == 2 && index2 == 2) {
             gameState[4] = xOrOTurn;
-            ;
+
         }
         if (index1 == 2 && index2 == 3) {
             gameState[5] = xOrOTurn;
-            ;
+
         }
         if (index1 == 3 && index2 == 1) {
             gameState[6] = xOrOTurn;
-            ;
+
         }
         if (index1 == 3 && index2 == 2) {
             gameState[7] = xOrOTurn;
-            ;
+
         }
         if (index1 == 3 && index2 == 3) {
             gameState[8] = xOrOTurn;
-            ;
+
         }
         //for(int i = 0; i< gameState.length; i++) {
         //  System.out.print(gameState[i]);
@@ -132,14 +138,20 @@ public class BoardCheck {
                 ((gameState[6].equals("O")) && (gameState[7].equals("O")) && (gameState[8].equals("O")));
 
         if (xWin) {
-            System.out.println("X wins");
+            //System.out.println("X wins");
+            xWinner = true;
             gameOver = true;
         }
 
         if (oWin) {
-            System.out.println("O wins");
+            //System.out.println("O wins");
+            oWinner = true;
             gameOver = true;
         }
+    }
+
+    public void checkDraw() {
+
     }
 
     public boolean isGameOver() {
@@ -150,7 +162,13 @@ public class BoardCheck {
         return occupied;
     }
 
+    public boolean isxWinner() {
+        return xWinner;
+    }
 
+    public boolean isoWinner() {
+        return oWinner;
+    }
 
     public void checkTally() {
         xTally = 0;
@@ -196,13 +214,12 @@ public class BoardCheck {
             Set = true;
         }
     }
-
-    public void checkDraw() {
-
-    }
-
     public String getxOrOTurn() {
         return xOrOTurn;
+    }
+
+    public Boolean getGameOver() {
+        return gameOver;
     }
 }
 

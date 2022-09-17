@@ -34,7 +34,7 @@ public class Board {
     public void createBoard() {
         for (int row = 0; row < boardArray.length; row++) {
             for (int col = 0; col < boardArray[row].length; col++) {
-                boardArray[row][col] = "_";
+                boardArray[row][col] = " ";
             }
         }
     }

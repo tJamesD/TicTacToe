@@ -12,6 +12,7 @@ public class Main {
         Board board = new Board();
         NumberCheck checkNumbers = new NumberCheck();
         BoardCheck checkBoard = new BoardCheck();
+        TurnCounter turnCounter = new TurnCounter();
 
         board.createBoard();
 
@@ -21,6 +22,16 @@ public class Main {
 
         while(true) {
             board.printBoard();
+            if (checkBoard.isGameOver()) {
+                if (checkBoard.isxWinner()) {
+                    System.out.println("X wins");
+                    break;
+                }
+                else {
+                    System.out.println("O wins");
+                    break;
+                }
+            }
             System.out.print("> ");
             String input = scanner.nextLine();
             if (input.equals("00")) {
@@ -51,6 +62,13 @@ public class Main {
                     String[] newState = checkBoard.setCell();
                     board.updateGrid(newState);
                     checkBoard.setXOrOTurn();
+                    turnCounter.addTurn();
+                    checkBoard.checkWin();
+                    System.out.println(turnCounter.getTurnCounter());
+                    if (turnCounter.getTurnCounter()>=9 && !checkBoard.xWinner && !checkBoard.oWinner) {
+                        System.out.println("Draw");
+                        break;
+                    }
 
                 }
             }
